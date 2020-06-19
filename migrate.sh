@@ -31,12 +31,13 @@ echo "Checking for migration to $(new_ip) at 5-minute intervals.\n"
 while true; do
     ip=$(ping -c 1 $domain_to_check | grep "64 bytes from"| awk '{print $4}')
 
-    if [ $ip '==' $target_ip ]; then
+    if [ "$ip" = "$target_ip" ]; then
         echo "Migration complete @ $(date)";
         break;
     else
         echo "Still pointing to $ip @ $(date)"
     fi
 
+    # Wait 5 minutes
     sleep 300
 done
