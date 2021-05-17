@@ -25,8 +25,9 @@ clear
 # Keep the colon (:) at the end of the target_ip
 target_ip="xxx.xxx.xxx.xxx:"
 domain_to_check="subdomain.domain.com"
+interval=5
 
-echo "Checking for migration to $(new_ip) at 5-minute intervals.\n"
+echo "Checking for migration to $target_ip at $interval-minute intervals.\n"
 
 while true; do
     ip=$(ping -c 1 $domain_to_check | grep "64 bytes from"| awk '{print $4}')
@@ -38,6 +39,6 @@ while true; do
         echo "Still pointing to $ip @ $(date)"
     fi
 
-    # Wait 5 minutes
-    sleep 300
+    # Wait the interval value in minutes
+    sleep $((60*interval))
 done
