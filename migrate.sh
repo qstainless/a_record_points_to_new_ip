@@ -18,25 +18,36 @@
 # echo "Still pointing to $ip @ $(date)" >> migration_check.txt
 # ```
 
+# make it pretty
+NC='\033[0m'     # No color
+WHT='\033[1;37m' # White
+BOLD=$(tput bold)
+NORM=$(tput sgr0)
+
 clear
 
-# Replace xxx.xxx.xxx.xxx below with the IP to which your A record will point.
-# target_ip is the IP address of your subdomain/domain in the target hosting provider.
-# Keep the colon (:) at the end of the target_ip
-target_ip="xxx.xxx.xxx.xxx:"
-domain_to_check="subdomain.domain.com"
+# ask for the IP4 address to which your A record will point
+echo "What is the target IP4 address? (xxx.xxx.xxx.xxx)"
+read target_ip
+
+# ask for the domain name pointing to the above IP4 address
+echo "What is the domain to check for migration?"
+read domain_to_check
+
 interval=5
 
-echo "Checking for migration to $target_ip at $interval-minute intervals.\n"
+original_ip=$(ping -c 1 $domain_to_check | grep "64 bytes from"| awk '{print $4}')
+
+echo "\nChecking for migration of ${BOLD}$domain_to_check${NORM}\nfrom ${WHT}${original_ip}${NC} to ${WHT}$target_ip:${NC} at $interval-minute intervals.\n"
 
 while true; do
     ip=$(ping -c 1 $domain_to_check | grep "64 bytes from"| awk '{print $4}')
 
     if [ "$ip" = "$target_ip" ]; then
-        echo "Migration complete @ $(date)";
+        echo "\n${BOLD}Migration complete${NORM} @ ${WHT}$(date)${NC}";
         break;
     else
-        echo "Still pointing to $ip @ $(date)"
+        echo "Still pointing to ${WHT}$ip${NC} @ $(date)"
     fi
 
     # Wait the interval value in minutes
