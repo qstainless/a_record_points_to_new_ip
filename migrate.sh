@@ -30,6 +30,8 @@ clear
 echo "What is the target IP4 address? (xxx.xxx.xxx.xxx)"
 read target_ip
 
+target_ip=$target_ip:
+
 # ask for the domain name pointing to the above IP4 address
 echo "What is the domain to check for migration?"
 read domain_to_check
