@@ -40,7 +40,7 @@ interval=5
 
 original_ip=$(ping -c 1 $domain_to_check | grep "64 bytes from"| awk '{print $4}')
 
-echo "\nChecking for migration of ${BOLD}$domain_to_check${NORM}\nfrom ${WHT}${original_ip}${NC} to ${WHT}$target_ip:${NC} at $interval-minute intervals.\n"
+echo "\nChecking for migration of ${BOLD}$domain_to_check${NORM}\nfrom ${WHT}${original_ip}${NC} to ${WHT}$target_ip${NC} at $interval-minute intervals.\n"
 
 while true; do
     ip=$(ping -c 1 $domain_to_check | grep "64 bytes from"| awk '{print $4}')
