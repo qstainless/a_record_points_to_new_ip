@@ -44,7 +44,7 @@ while true; do
 
   if [ "$ip" = "$target_ip" ]; then
     echo "Migration complete @ $(date)"
-    break
+    exit 0
   else
     echo "Still pointing to $ip @ $(date)"
   fi
