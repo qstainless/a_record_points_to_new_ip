@@ -37,12 +37,12 @@ domain_to_check=$2
 # interval to check in minutes
 interval=5
 
-echo "Checking for migration to $target_ip at $interval-minute intervals.\n"
+echo "Checking for migration to ${target_ip} at ${interval}-minute intervals.\n"
 
 while true; do
   ip=$(ping -c 1 $domain_to_check | grep "64 bytes from" | awk '{print $4}')
 
-  if [ "$ip" = "$target_ip" ]; then
+  if [ "$ip" = "${target_ip}" ]; then
     echo "Migration complete @ $(date)"
     exit 0
   else
