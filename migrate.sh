@@ -25,7 +25,7 @@
 # check if proper arguments are passed
 if [ $# -eq 0 ]; then
   echo "No target ip address or domain provided."
-  echo "usage: sh migrate.sh <target_ip_address> <target_domain_to_check>"
+  echo "usage: ./migrate.sh <target_ip_address> <target_domain_to_check>"
   exit 1
 fi
 
