@@ -33,6 +33,8 @@ clear
 
 target_ip="$1:"
 domain_to_check=$2
+BOLD=$(tput bold)
+NORM=$(tput sgr0)
 
 # interval to check in minutes
 interval=5
@@ -41,7 +43,7 @@ log_file=~/.logs/a-record-migration-$(date '+%Y-%m-%d-%H-%M-%S')-${domain_to_che
 
 exec 3>&1 1>>${log_file} 2>&1    # see https://stackoverflow.com/a/18462920/1870339
 
-check="Checking for migration of ${domain_to_check} to ${target_ip}"
+check="Checking for migration of ${BOLD}${domain_to_check}${NORM} to ${BOLD}${target_ip}${NORM}"
 
 echo "${check} at ${interval}-minute intervals." 1>&3
 echo "${check}" 1>&2
@@ -55,7 +57,7 @@ while true; do
     echo "==> Migration complete on $(date)\n--+--" | tee /dev/fd/3
     exit 0
   else
-    echo "==> Still pointing to $ip @ $(date)" 1>&3
+    echo "==> Still pointing to ${BOLD}${ip}${NORM} @ $(date)" 1>&3
   fi
 
   # Wait the interval value in minutes
