@@ -8,19 +8,9 @@
 # the domain until propagation is complete.
 #
 # The script takes two arguments:
-# target_ip - the IP address of the subdomain/domain in the target hosting provider to which the A record will point.
+# target_ip - the IP address of the subdomain/domain in the target hosting
+#             provider to which the A record will point.
 # domain_to_check - the subdomain/domain in the target hosting provider
-#
-# The script can also be modified to write the update messages to a text file
-# ```
-# echo "Migration complete @ $(date)" >> migration_check.txt
-# ```
-#
-# and
-#
-# ```
-# echo "Still pointing to $ip @ $(date)" >> migration_check.txt
-# ```
 
 # check if proper arguments are passed
 if [ $# -eq 0 ]; then
