@@ -39,7 +39,7 @@ do
 
   if [ "$ip" = "$target_ip" ]
   then
-    echo "==> Migration complete on $(date)\n--+--" | tee -a "$log_file"
+    echo "==> Migration complete on $(date)" | tee -a "$log_file"
     exit 0
   else
     echo "==> Still pointing to ${ip} @ $(date)"
