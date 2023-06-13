@@ -13,10 +13,9 @@
 # domain_to_check - the subdomain/domain in the target hosting provider
 
 # check if proper arguments are passed
-if [ $# -eq 0 ]
+if [ $# -ne 2 ]
 then
-  echo "No target ip address or domain provided."
-  echo "usage: ./migrate <target_ip_address> <target_domain_to_check>"
+  echo "usage: $0 <target_ip_address> <target_domain_to_check>"
   exit 1
 fi
 
