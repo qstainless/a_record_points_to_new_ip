@@ -35,7 +35,7 @@ echo "==> Migration check started on $(date)" | tee "$log_file"
 
 while true
 do
-  ip=$(ping -c 1 $domain_to_check | grep "64 bytes from" | awk '{print $4}')
+  ip=$(ping -c 1 "$domain_to_check" | awk -F'[()]' '/^PING/{print $2}')
 
   if [ "$ip" = "${target_ip}" ]
   then
